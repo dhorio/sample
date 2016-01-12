@@ -8,6 +8,7 @@ namespace Network
 		GotoMain,
 		GotoTitle,
 		TextOnly,
+        PlayerPosition,
 	};
 
 	public struct Msg
@@ -35,4 +36,13 @@ namespace Network
 			this.text = text;
 		}
 	}
+
+    public struct PlayerPosition
+    {
+        public Player.Direction direction;
+        public PlayerPosition(Player.Direction direction)
+        {
+            this.direction = direction;
+        }
+    }
 }

@@ -171,5 +171,10 @@ namespace Network
         {
             Send(ProtocolType.TextOnly, new TextMessage(text));
         }
+
+        public void SendPlayerPosition(Player.Direction direction)
+        {
+            Send(ProtocolType.PlayerPosition, new PlayerPosition(direction));
+        }
     }
 }
