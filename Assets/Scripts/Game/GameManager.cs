@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     MainSystem system;
 
     void Start() {
+        player.OnDead += PlayerDead;
+
         system = MainSystem.Instance;
         if (system == null)
         {
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour {
 
     void OnDestroy()
     {
+        player.OnDead -= PlayerDead;
+
         if (system == null)
         {
             return;
@@ -57,6 +61,11 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
+
+    void PlayerDead()
+    {
+        Debug.Log("Game Over");
+    }
 
     void EnemyMove(Network.PlayerPosition msg)
     {

@@ -14,7 +14,11 @@ public class Player : MonoBehaviour {
     public Bullet bulletPrefab;
     public float moveVector = 0.2f;
 
+    public int hp = 3;
+
     private List<GameObject> bullts = new List<GameObject>();
+
+    public Action OnDead = () => { };
 
     public void Move(Direction dir)
     {
@@ -50,5 +54,14 @@ public class Player : MonoBehaviour {
 
         bullts.Remove(collision.gameObject);
         Destroy(collision.gameObject);
+
+        if(hp > 0)
+        {
+            hp--;
+            if (hp == 0)
+            {
+                OnDead();
+            }
+        }
     }
 }
