@@ -9,6 +9,7 @@ namespace Network
         public Action<TextMessage> OnReceiveTextMessage = (msg) => { };
         public Action<PlayerPosition> OnReceivePlayerPosition = (msg) => { };
         public Action<BulletFire> OnReceiveBulletFire = (msg) => { };
+        public Action<PlayerDead> OnReceivePlayerDead = (msg) => { };
  
         public void DoProtocol(Msg msg)
         {
@@ -32,6 +33,10 @@ namespace Network
 
                 case ProtocolType.BulletFire:
                     OnReceiveBulletFire(Packer.UnPack<BulletFire>(msg.data));
+                    break;
+
+                case ProtocolType.PlayerDead:
+                    OnReceivePlayerDead(Packer.UnPack<PlayerDead>(msg.data));
                     break;
             }
         }

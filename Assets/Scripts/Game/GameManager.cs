@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
         }
         system.Executor.OnReceivePlayerPosition += EnemyMove;
         system.Executor.OnReceiveBulletFire += EnemyBulletFire;
+        system.Executor.OnReceivePlayerDead += GameOver;
 	}
 
     void OnDestroy()
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
         }
         system.Executor.OnReceivePlayerPosition -= EnemyMove;
         system.Executor.OnReceiveBulletFire -= EnemyBulletFire;
+        system.Executor.OnReceivePlayerDead -= GameOver;
     }
 
     // Update is called once per frame
@@ -63,6 +65,15 @@ public class GameManager : MonoBehaviour {
 	}
 
     void PlayerDead()
+    {
+        Debug.Log("Game Over");
+        if (system)
+        {
+            system.Session.SendPlayerDead();
+        }
+    }
+
+    void GameOver(Network.PlayerDead msg)
     {
         Debug.Log("Game Over");
     }

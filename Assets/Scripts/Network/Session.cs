@@ -181,5 +181,10 @@ namespace Network
         {
             Send(ProtocolType.BulletFire, new BulletFire());
         }
+
+        public void SendPlayerDead()
+        {
+            Send(ProtocolType.PlayerDead, new PlayerDead());
+        }
     }
 }

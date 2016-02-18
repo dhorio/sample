@@ -10,6 +10,7 @@ namespace Network
 		TextOnly,
         PlayerPosition,
         BulletFire,
+        PlayerDead,
 	};
 
 	public struct Msg
@@ -48,6 +49,10 @@ namespace Network
     }
 
     public struct BulletFire
+    {
+    }
+
+    public struct PlayerDead
     {
     }
 }
