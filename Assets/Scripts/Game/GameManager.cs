@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.Fire(0.2f);
+        }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             player.Move(Player.Direction.Right);
