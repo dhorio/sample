@@ -176,5 +176,10 @@ namespace Network
         {
             Send(ProtocolType.PlayerPosition, new PlayerPosition(direction));
         }
+
+        public void SendPlayerBulletFire()
+        {
+            Send(ProtocolType.BulletFire, new BulletFire());
+        }
     }
 }

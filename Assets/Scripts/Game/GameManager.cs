@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         system.Executor.OnReceivePlayerPosition += EnemyMove;
+        system.Executor.OnReceiveBulletFire += EnemyBulletFire;
 	}
 
     void OnDestroy()
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         system.Executor.OnReceivePlayerPosition -= EnemyMove;
+        system.Executor.OnReceiveBulletFire -= EnemyBulletFire;
     }
 
     // Update is called once per frame
@@ -32,6 +34,10 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             player.Fire(0.2f);
+            if(system)
+            {
+                system.Session.SendPlayerBulletFire();
+            }
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -55,5 +61,10 @@ public class GameManager : MonoBehaviour {
     void EnemyMove(Network.PlayerPosition msg)
     {
         enemy.Move(msg.direction);
+    }
+
+    void EnemyBulletFire(Network.BulletFire msg)
+    {
+        enemy.Fire(-0.2f);
     }
 }

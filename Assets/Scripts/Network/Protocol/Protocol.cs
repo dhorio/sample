@@ -9,6 +9,7 @@ namespace Network
 		GotoTitle,
 		TextOnly,
         PlayerPosition,
+        BulletFire,
 	};
 
 	public struct Msg
@@ -44,5 +45,9 @@ namespace Network
         {
             this.direction = direction;
         }
+    }
+
+    public struct BulletFire
+    {
     }
 }

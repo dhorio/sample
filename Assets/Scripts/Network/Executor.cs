@@ -8,7 +8,8 @@ namespace Network
     {
         public Action<TextMessage> OnReceiveTextMessage = (msg) => { };
         public Action<PlayerPosition> OnReceivePlayerPosition = (msg) => { };
-
+        public Action<BulletFire> OnReceiveBulletFire = (msg) => { };
+ 
         public void DoProtocol(Msg msg)
         {
             switch (msg.type)
@@ -27,6 +28,10 @@ namespace Network
                     break;
                 case ProtocolType.PlayerPosition:
                     OnReceivePlayerPosition(Packer.UnPack<PlayerPosition>(msg.data));
+                    break;
+
+                case ProtocolType.BulletFire:
+                    OnReceiveBulletFire(Packer.UnPack<BulletFire>(msg.data));
                     break;
             }
         }
